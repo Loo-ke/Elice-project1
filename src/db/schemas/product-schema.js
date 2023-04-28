@@ -4,18 +4,8 @@ const { Schema } = mongoose;
 
 const ProductSchema = new Schema(
   {
-    productId: {
-      // 상품 / 상품 아이디 자동으로 increase?
-      type: String,
-      required: true,
-    },
     product: {
       // 상품명
-      type: String,
-      required: true,
-    },
-    productOption: {
-      // 추가옵션
       type: String,
       required: true,
     },
@@ -43,16 +33,6 @@ const ProductSchema = new Schema(
       // type:String,
       required:true,
       ref:"nations",
-    },
-    manufacturer: {
-      // 제조사
-      type: String,
-      required: true,
-    },
-    shortDescription: {
-      // 짧은 설명
-      type: String,
-      required: true,
     },
     detailDescription: {
       // 상세 설명
