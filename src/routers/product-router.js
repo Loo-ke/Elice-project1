@@ -11,4 +11,4 @@ productRouter.get('/product/:productId',productController.getProduct);
 productRouter.put('/product/:productId',loginRequired, adminOnly, productController.updateProduct);
 productRouter.delete('/product/:productId', loginRequired, adminOnly, productController.deleteProduct);
 
-export default productRouter;
+export { productRouter };

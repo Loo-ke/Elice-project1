@@ -14,4 +14,4 @@ categoryRouter.get("/category/:categoryId", categoryController.getCategoryById);
 categoryRouter.put("/category/:categoryId", loginRequired, adminOnly,categoryController.updateCategory);
 categoryRouter.delete("/category/:categoryId",loginRequired, adminOnly, categoryController.deleteCategory);
 
-export default categoryRouter;
+export { categoryRouter };

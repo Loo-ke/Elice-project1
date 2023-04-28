@@ -1,6 +1,12 @@
 // 주문 상태 조회 API를 호출하여 데이터 가져오기
 function loadOrders() {
-    fetch('http://localhost:4000/admin/orders')
+    fetch('http://localhost:4000/admin/orders', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` // 추가된 코드
+        }
+    })
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -8,7 +14,7 @@ function loadOrders() {
                 // API 요청이 실패한 경우 임시 데이터를 사용
                 return [
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -16,7 +22,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -24,7 +30,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -32,7 +38,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -40,7 +46,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -48,7 +54,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -56,7 +62,7 @@ function loadOrders() {
                         productId: 'temp_product_id'
                     },
                     {
-                        orderDate: '2023-04-26',
+                        createdAt: '2023-04-26',
                         customerName: '엘리스',
                         productName: '사프란 1g',
                         totalPrice: '31,800원',
@@ -73,7 +79,7 @@ function loadOrders() {
             data.forEach(order => {
                 const row = `
                     <tr>
-                    <td>${order.orderDate}</td>
+                    <td>${order.createdAt}</td>
                     <td>
                         <p>${order.customerName}</p>
                     </td>

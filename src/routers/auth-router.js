@@ -8,4 +8,4 @@ const authRouter = Router();
 authRouter.post("/login", handlelogin);
 authRouter.post("/logout", handlelogout);
 
-export default authRouter
+export { authRouter };

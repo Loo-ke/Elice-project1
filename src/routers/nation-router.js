@@ -11,4 +11,4 @@ nationRouter.get("/nation/:nationId", loginRequired, adminOnly, nationController
 nationRouter.put("/nation/:nationId", loginRequired, adminOnly, nationController.updateNation);
 nationRouter.delete("/nation/:nationId", loginRequired, adminOnly, nationController.deleteNation);
 
-export default nationRouter;
+export { nationRouter };
