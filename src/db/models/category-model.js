@@ -17,6 +17,12 @@ class CategoryModel {
     }
   }
 
+  async findByTitle(title) {
+    const category = await Category.findOne({ title });
+    return category;
+  }
+
+
   // async findByName(name) {
   //   try {
   //     const category = await Category.findOne({ name });

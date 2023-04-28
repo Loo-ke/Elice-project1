@@ -9,6 +9,17 @@ class ProductModel {
     return product;
   }
 
+  async findAllByCategoryId(categoryId) {
+    const products = await Product.find({ categoryId });
+    return products;
+  }
+  //  // 카테고리에 따른 상품 조회
+  //  async findByCategory(category) {
+  //   const products = await Product.find({ category: category });
+  //   return products;
+  // }
+
+
   async findById(pId) {
     const product = await Product.findOne({ _id: pId });//_id로 변경
     return product;
