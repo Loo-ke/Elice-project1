@@ -39,7 +39,7 @@ fetch(`/product/product/${itemid}`)
     if (loggedInUser) {
       buttonContainer.innerHTML += `<div class="button-sub-container">
       <a class="button-cart"><p>장바구니</p></a>
-      <a href="/order" class="button-cart" class="login-purchase"><p>바로구매</p></a>
+      <p class="button-cart" class="login-purchase"><p>바로구매</p></p>
     </div>`
     } else {
       buttonContainer.innerHTML += `<div class="button-sub-container">
@@ -97,7 +97,8 @@ fetch(`/product/product/${itemid}`)
   
         // 로컬저장소에 제이슨문자열로 현재상품 정보 전달
         window.localStorage.setItem(`cart${itemid}`, productInfoJson)
-        return alert("주문페이지로 이동합니다")
+        alert("주문페이지로 이동합니다")
+        window.location.href = "/order"
       }
     })
     

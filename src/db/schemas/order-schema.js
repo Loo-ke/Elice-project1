@@ -41,8 +41,8 @@ const OrderSchema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ["배송 준비중", "배송중", "배송 완료"],
-    default: "배송 준비중",
+    enum: ["pending", "process", "completed", "cancel"],
+    default: "pending",
   },
 }, { timestamps: true });
 

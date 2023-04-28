@@ -8,7 +8,7 @@ export const logout = (element) => {
     element.addEventListener("click", ()=>{
     window.localStorage.removeItem("token");
     const baseUrl = window.location.origin;
-    const mainUrl = baseUrl + "/src/views/main/main.html";
+    const mainUrl = baseUrl + "/main/main.html";
     window.location.href = mainUrl
     })
 }
