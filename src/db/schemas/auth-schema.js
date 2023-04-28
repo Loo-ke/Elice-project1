@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from 'bcrypt';
 const AuthSchema = new mongoose.Schema({
     userId: {
         type: String,

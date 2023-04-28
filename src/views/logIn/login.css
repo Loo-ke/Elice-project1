@@ -69,3 +69,19 @@ a {
     color:#01376A;
     font-size: 13px;
 }
+
+.id-error {
+    width: 100%;
+    color: red;
+    text-align: left;
+    font-size: 12px;
+    display: none;
+}
+
+.pw-error {
+    width:100%;
+    color: red;
+    text-align: left;
+    font-size: 12px;
+    display: none;
+}
