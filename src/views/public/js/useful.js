@@ -6,7 +6,7 @@ export const addCommas = (n) => {
 // 로그아웃시 동작
 export const logout = (element) => {  
     element.addEventListener("click", ()=>{
-    window.localStorage.removeItem("token");
+    window.localStorage.clear();
     const baseUrl = window.location.origin;
     const mainUrl = baseUrl + "/src/views/main/main.html";
     window.location.href = mainUrl

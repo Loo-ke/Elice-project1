@@ -38,23 +38,27 @@ fetch(`/product/product/${itemid}`)
     // 로그인, 비로그인 유저별 주문버튼 생성
     if (loggedInUser) {
       buttonContainer.innerHTML += `<div class="button-sub-container">
-      <a class="button-cart"><p>장바구니</p></a>
-      <p class="button-cart" class="login-purchase"><p>바로구매</p></p>
+      <p class="button-cart"><span>장바구니</span></p>
+      <p class="button-purchase login-purchase"><span>바로구매</span></p>
     </div>`
     } else {
       buttonContainer.innerHTML += `<div class="button-sub-container">
-      <a class="button-cart"><p>장바구니</p></a>
-      <a href="/login/login.html" class="button-purchase"><p>바로구매</p></a>
+      <p class="button-cart"><span>장바구니</span></p>
+      <p class="button-purchase"><span>바로구매</span></p>
     </div>`
     const PurchaseBtn = document.querySelector(".button-purchase")
-    PurchaseBtn.addEventListener("click", ()=>{return alert("로그인 후 이용가능합니다")});
+    PurchaseBtn.addEventListener("click", ()=>{alert("로그인 후 이용가능합니다")
+    window.location.href = "/login/login.html"});
     }
 
-    // 로컬 저장소의 장바구니 조회 후 현재 제품 장바구니 추가
-    const cartBtn = document.querySelector(".button-cart");
+    return product
+  })
+  .then((product)=> {
+    // 로컬 저장소의 장바구니 조회 후 현재 제품 장바구니 추가 
     const itemName = product.product;
     const itemPrice = product.price;
     const itemImg = product.imgUrl;
+    const cartBtn = document.querySelectorAll(".button-sub-container p");
 
     cartBtn.addEventListener("click", (e)=>{
       const productAmount = document.querySelector(".product-amount")
