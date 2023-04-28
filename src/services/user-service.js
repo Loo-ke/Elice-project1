@@ -1,4 +1,5 @@
 import UserModel from "../db/models/user-model.js";
+//import jwt from "jsonwebtoken"
 
 export const userService = {
   async createUser(userInfo) {
@@ -8,11 +9,8 @@ export const userService = {
   },
 
   async getUser(userId) {
-    const loggedInUserId = req.user.id;
-    if (userId !== loggedInUserId) {
-      throw new Error('인증된 사용자 정보만 조회할 수 있습니다.');
-    }
     const userModel = new UserModel();
+
     const foundUser = await userModel.findOne(userId);
     return foundUser;
   },
@@ -49,7 +47,8 @@ export const userService = {
   },
   async setAdmin(userId) {
     try {
-      const updatedUser = await UserModel.setAdmin(userId);
+      const userModel = new UserModel();
+      const updatedUser = await userModel.setAdmin(userId);
       return updatedUser;
     } catch (error) {
       throw new Error(`Failed to set admin role for user ${userId}: ${error}`);
@@ -57,7 +56,8 @@ export const userService = {
   },
   async setUser(userId) {
     try {
-      const updatedUser = await UserModel.setUser(userId);
+      const userModel = new UserModel();
+      const updatedUser = await userModel.setUser(userId);
       return updatedUser;
     } catch (error) {
       throw new Error(`Failed to set user role for user ${userId}: ${error}`);

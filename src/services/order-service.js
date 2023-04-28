@@ -36,9 +36,14 @@ export const orderService = {
   //관리자 모든 주문 조회
   async getAdminAllOrders() {
     const orderModel = new OrderModel();
-    const orders = await orderModel.findAllOrders();
-    return orders;
-  }
+    const getAdminOrders = await orderModel.findAllOrders();
+    return getAdminOrders;
+  },
+  async updateOrderStatus(orderId, status) {
+    const orderModel = new OrderModel();
+    const updatedOrder = await orderModel.updateOrderStatus(orderId, status);
+    return updatedOrder;
+    },
   
   
 }

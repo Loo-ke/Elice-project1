@@ -13,7 +13,7 @@ orderRouter.delete("/orders/:productId", orderController.deleteOrder);
 //관리자
 
 orderRouter.get("/admin/orders/", adminOnly, orderController.getAdminAllOrders);
-
+orderRouter.patch("/admin/orders/", adminOnly, orderController.updateAdminAllOrders);
 
 
 
