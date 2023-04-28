@@ -23,15 +23,20 @@ submitBtn.onclick = () => {
             const token = data.token;
             localStorage.setItem("token", JSON.stringify(token));
             console.log(token);
-            fetch(`http://localhost:4000/mypage/${userId}`, {
+            fetch(`http://localhost:4000/mypage/${userId.value}`, {
                 method: "GET",
                 headers: {
                 "Authorization": `Bearer ${token}`
                 }
             })
             .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
+            //회원 로그인 페이지 || 관리자 페이지 이동
+            .then((mypageData) => {
+                if (mypageData.isAdmin) {
+                    window.location.href = "/src/views/admin/index.html";
+                } else {
+                    window.location.href = "/src/views/main/main.html";
+                }
             })
             .catch((err) => console.error(err));
         //로그인 실패 에러 메세지 출력

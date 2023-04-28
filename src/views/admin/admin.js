@@ -200,3 +200,28 @@ modals.forEach(modal => {
 		modal.style.display = 'none';
 	});
 });
+
+
+
+// 로그아웃 버튼 클릭 이벤트 핸들러
+const logoutButton = document.querySelector(".logout");
+logoutButton.addEventListener("click", () => {
+  // API 요청 보내기
+	fetch("http://localhost:4000/logout", {
+		method: "POST",
+		credentials: "include",
+	})
+		.then((res) => {
+		if (res.ok) {
+			// 세션 및 토큰 정보 삭제 후 로그인 화면으로 이동
+			sessionStorage.clear();
+			localStorage.clear();
+			window.location.href = "/login.html";
+		} else {
+			throw new Error("API 요청이 실패했습니다.");
+		}
+		})
+		.catch((error) => {
+		console.error(error);
+		});
+});

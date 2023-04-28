@@ -25,5 +25,3 @@ export const handlelogout = async (req, res) => {
     res.status(500).json({ error: "로그아웃에 실패했습니다." });
   }
 };
-
-
