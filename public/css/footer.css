@@ -4,10 +4,9 @@
    align-items: center;
 }
 
-.footer .footer-container {
+ .footer .footer-container {
    width: 100%;
-   margin-top: 50px;
-   padding: 10px 0;
+   height: 80px;
    background-color: #ebcf9b;
    text-align: center;
    color: white;

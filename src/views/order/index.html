@@ -7,8 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./order_style.css">
   <script defer src="./order_script.js"></script>
+  <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <title>order page</title>
 </head>
 <body>
@@ -73,6 +75,10 @@
   
               <div class="order-info-list-box">
                   <div class="order-info-list">
+                    <div>
+                      <input type="radio" id="oldAddr" class="radio-btn" name='adress' value = "회원정보와동일" checked> 회원정보와 동일
+                      <input type="radio" id="newAddr" class="radio-btn" name='adress' value = "새로작성"> 다른주소
+                    </div>
 
                       <div class="order-info-box">
                           <label for="order-name" class="label">이름</label>
@@ -85,10 +91,16 @@
                       </div>
                       
                       <div class="order-info-box">
-                          <label for="order-adress" class="label">주소</label>
-                          <input class="order-adress" id="address" type="text" placeholder="주소를 입력해 주세요." autocomplete="on">
-                      </div>
-                  </div>
+                        <div class="join-name">주소</div>
+                        <div class="join-post">
+                            <input id="user-post" name="user-post" class="join-post-input" type="text" placeholder="우편번호" readonly>
+                            <button id="post-search-btn" class="join-post-input" type="button" onclick="findAddr()">주소 검색</button>
+                        </div>
+                        <div class="join-addr">
+                            <input id="user-addr" name="user-addr" class="join-addr-input" type="text" placeholder="기본 주소" readonly>
+                            <input id="user-detail-addr" name="user-detail-addr" class="join-addr-input" type="text" placeholder="상세 주소">
+                            <div id="addr-error" name="addr-error" class="addr-error"></div>
+                        </div>
 
               </div>
               <div class="order-btn" id="order__btn">

@@ -329,7 +329,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 25px;
     color: #777777;
 }
 
@@ -404,6 +404,8 @@
     font-weight: 400;
     color: #555555;
  }
+
+ 
 
  /* 하단바 공용에서 만들어서 씀*/
     /* .footer {

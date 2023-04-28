@@ -14,9 +14,7 @@ const cartDetail = document.querySelector('.cart__detail') //배송비 및 토�
           nowcart.push(data)
          }
 				}
-      
-console.log(nowcart);
-
+  
 		nowcart.forEach((cartItem) =>{
 			const{ _id, product, price, amount, imgUrl} = cartItem
 			cartHaveProduct.insertAdjacentHTML('beforeend', 
@@ -44,7 +42,7 @@ console.log(nowcart);
 						</div>
 					</div>
 					`)
-		})
+		
 			const amountNum= document.querySelector(`#quan__num__${_id}`)
 			const productPrice = document.querySelector(`#product__price__num__${_id}`)
 			const productItem = document.querySelector(`#productItem__${_id}`)
@@ -57,7 +55,7 @@ console.log(nowcart);
 							const{ _id, price, amount} = cartItem
 						let productPriceNum = price*amount  
 						orderPriceNum += productPriceNum
-					})
+					 })
 					orderPrice.textContent = orderPriceNum
 					if(parseInt(orderPrice.textContent)>50000){
 						totalPrice.textContent = orderPrice.textContent 
@@ -65,10 +63,49 @@ console.log(nowcart);
 					totalPrice.textContent =  parseInt(orderPrice.textContent)+2500
 				}
 			}
-	
-
+			orderPriceFunc()
+		})
+		const orderBtn = document.querySelector('#order__btn')
 		orderBtn.addEventListener('click',()=>{ // 주문자페이지로 데이터보내기
 			
 		})
-		orderPriceFunc()
-	
+		
+
+
+
+
+
+
+
+		//주소 검색버튼
+
+	const postSearchBtn = document.getElementById("post-search-btn");
+	const userPost = document.getElementById("user-post");
+	const userAddr = document.getElementById("user-addr");
+	const userDetailAddr = document.getElementById("user-detail-addr");
+	const oldAddr = document.querySelector('#oldAddr')
+	const newAddr = document.querySelector('#newAddr')
+
+
+		postSearchBtn.onclick = () => {
+			new daum.Postcode({
+						oncomplete: function(data) {
+							
+							console.log(data);
+							
+								// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+								// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+								// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								var roadAddr = data.roadAddress; // 도로명 주소 변수
+								var jibunAddr = data.jibunAddress; // 지번 주소 변수
+								// 우편번호와 주소 정보를 해당 필드에 넣는다.
+								document.getElementById('user-post').value = data.zonecode;
+								if(roadAddr !== ''){
+										document.getElementById("user-addr").value = roadAddr;
+								} 
+								else if(jibunAddr !== ''){
+										document.getElementById("user-addr").value = jibunAddr;
+								}
+						}
+				}).open();
+		}

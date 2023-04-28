@@ -11,7 +11,7 @@ import {
   categoryRouter,
   productRouter,
   nationRouter,
-  viewsRouter,
+  // viewsRouter,
   orderRouter,
 } from "./routers/index.js";
 import errorHandler from "./middlewares/error-handler.js";
@@ -49,7 +49,7 @@ db.once("open", function () {
 
 
 // HTML, CSS, JS 라우팅
-app.use("/", viewsRouter);
+// app.use("/", viewsRouter);
 
 // API 라우팅
 app.use(userRouter);

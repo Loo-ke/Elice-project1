@@ -73,8 +73,12 @@ submitBtn.onclick = () => {
                 address1: userAddr.value,
                 address2: userDetailAddr.value,
               },
+<<<<<<< HEAD
             birthdate: String(userYear.value) + userMonth.value + String(userDay.value),
     
+=======
+            birthdate: String(userYear.value) + userMonth.value + String(userDay.value), 
+>>>>>>> 4284b44e880165f53098fc8eb47f7e2f93e2e86b
         };
         fetch("http://localhost:4000/signup", {
             method: "POST",
