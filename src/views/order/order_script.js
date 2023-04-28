@@ -1,3 +1,4 @@
+
 import { main, logout } from "/public/js/main.js";
 const { loggedInUser } = await main();
 
