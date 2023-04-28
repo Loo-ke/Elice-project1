@@ -9,7 +9,7 @@ submitBtn.onclick = () => {
         userId: userIdInput.value,
         password: userPwInput.value,
     };
-    fetch("http://localhost:4000/login", {
+    fetch("/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -24,7 +24,7 @@ submitBtn.onclick = () => {
             localStorage.setItem("token", JSON.stringify(token));
             console.log(token);
             console.log(data);
-            fetch(`http://localhost:4000/mypage/${userIdInput.value}`, {
+            fetch(`/user/mypage/${userIdInput.value}`, {
                 method: "GET",
                 headers: {
                 "Authorization": `Bearer ${token}`

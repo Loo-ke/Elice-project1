@@ -75,7 +75,7 @@ submitBtn.onclick = () => {
               },
             birthdate: String(userYear.value) + userMonth.value + String(userDay.value), 
         };
-        fetch("http://localhost:4000/signup", {
+        fetch("/user/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

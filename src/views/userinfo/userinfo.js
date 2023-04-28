@@ -1,7 +1,7 @@
 import { main, logout } from "/public/js/main.js";
 const { loggedInUser } = await main();
 // 유효성 검사
-const submitBtn = document.getElementById("submit-btn");
+const updateBtn = document.getElementById("update-btn");
 const postSearchBtn = document.getElementById("post-search-btn");
 const userIdInput = document.getElementById("user-id");
 const userPwInput = document.getElementById("user-pw");
@@ -31,7 +31,7 @@ const validPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 const token = JSON.parse(localStorage.getItem("token"));
 const userId = JSON.parse(localStorage.getItem("userId"));
 
-fetch(`http://localhost:4000/mypage/${userId}`, {
+fetch(`/user/mypage/${userId}`, {
     method: "GET",
     headers: {
         "Authorization": `Bearer ${token}`,
@@ -49,7 +49,12 @@ fetch(`http://localhost:4000/mypage/${userId}`, {
 })
 .catch((err) => console.error(err));
 
-submitBtn.onclick = () => {
+//탈퇴 기능
+
+
+
+//수정 기능
+updateBtn.onclick = () => {
     // 아이디를 입력 안했을 때
     if(userIdInput.value == "") {
         userIdInput.placeholder = "아이디를 입력하세요";
@@ -81,7 +86,7 @@ submitBtn.onclick = () => {
                 address2: userDetailAddr.value,
             },
         };
-        fetch(`http://localhost:4000/mypage/${userIdInput.value}`, {
+        fetch(`/user/mypage/${userIdInput.value}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -104,6 +109,7 @@ submitBtn.onclick = () => {
         });
     }
 }
+
 //onchange_id
 
 userIdInput.onchange = () => {
