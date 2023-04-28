@@ -36,9 +36,9 @@ submitBtn.onclick = () => {
                 const userId = mypageData.userId;
                 localStorage.setItem("userId", JSON.stringify(userId));
                 if (mypageData.isAdmin) {
-                    window.location.href = "/src/views/admin/index.html";
+                    window.location.href = "/admin/index.html";
                 } else {
-                    window.location.href = "/src/views/main/main.html";
+                    window.location.href = "/main/main.html";
                 }
             })
             .catch((err) => console.error(err));

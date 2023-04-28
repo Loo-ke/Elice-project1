@@ -92,7 +92,7 @@ submitBtn.onclick = () => {
             alert(`정상적으로 회원가입되었습니다.`);
       
             // 로그인 페이지 이동
-            window.location.href = "/src/views/login/login.html";
+            window.location.href = "/login/login.html";
         })
         .catch((err) => {
             console.error(err.stack);
