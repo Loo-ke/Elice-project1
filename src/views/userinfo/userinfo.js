@@ -2,10 +2,9 @@ import { main, logout } from "/public/js/main.js";
 const { loggedInUser } = await main();
 // 유효성 검사
 const updateBtn = document.getElementById("update-btn");
+const deleteBtn = document.getElementById("delete-btn");
 const postSearchBtn = document.getElementById("post-search-btn");
 const userIdInput = document.getElementById("user-id");
-const userPwInput = document.getElementById("user-pw");
-const userPwCfm = document.getElementById("user-pw-cfm");
 const userName = document.getElementById("user-name");
 const userPhone = document.getElementById("user-phone");
 const userPost = document.getElementById("user-post");
@@ -14,15 +13,12 @@ const userDetailAddr = document.getElementById("user-detail-addr");
 
 
 const idError = document.getElementById("id-error");
-const pwError = document.getElementById("pw-error");
-const pwCrmError = document.getElementById("pw-cfm-error");
 const nameError = document.getElementById("name-error");
 const addrError = document.getElementById("addr-error");
 const phoneError = document.getElementById("phone-error");
 
 const validId = /^[a-zA-Z0-9]+$/;
 const validIdLength = /^.{4,12}$/;
-const validPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 const validName = /^[가-힣]{2,15}$/;
 const validAddr = /^[가-힣0-9\s]+$/;
 const validPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
@@ -50,9 +46,27 @@ fetch(`/user/mypage/${userId}`, {
 .catch((err) => console.error(err));
 
 //탈퇴 기능
-
-
-
+deleteBtn.onclick = () => {
+    fetch(`/user/mypage/${userId}`, {
+    method: 'DELETE',
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
+    })
+    .then(res => {
+        if (res.ok) {
+            alert(`정상적으로 탈퇴되었습니다.`);
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            // 메인 페이지 이동
+            window.location.href = "/main/main.html";
+        } else {
+            alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요`);
+        }
+    })
+    .catch(error => console.error(error))
+}
 //수정 기능
 updateBtn.onclick = () => {
     // 아이디를 입력 안했을 때
@@ -124,33 +138,6 @@ userIdInput.onchange = () => {
         idError.innerHTML = "아이디는 4~12자 이내로 입력 가능합니다";
     }else {
         idError.style.display = "none";
-    }
-    return false;
-}
-
-//onchange_pw
-userPwInput.onchange = () => {
-    const userPwInputValue = userPwInput.value;
-    if (!validPw.test(userPwInputValue)) {
-        pwError.style.display = "block";
-        pwError.style.color = "red";
-        pwError.innerHTML = "비밀번호는 8~20자 이내의 영문+숫자+특수문자 조합만 입력 가능 합니다";
-    }else {
-        pwError.style.display = "none";
-    }
-    return false;
-}
-
-//onchange_pwcfm
-userPwCfm.onchange = () => {
-    const userPwInputValue = userPwInput.value;
-    const userPwCfmInput = userPwCfm.value;
-    if (userPwInputValue !== userPwCfmInput) {
-        pwCrmError.style.display = "block";
-        pwCrmError.style.color = "red";
-        pwCrmError.innerHTML = "비밀번호가 일치하지 않습니다";
-    }else {
-        pwCrmError.style.display = "none";
     }
     return false;
 }
