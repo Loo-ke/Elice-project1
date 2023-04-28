@@ -242,8 +242,8 @@ fetch("/product/product")
                         items.innerHTML += newproduct;
                     }) 
                 }
-            })},700)
-        })}, 1000);
+            })},200)
+        })}, 1500);
     })
     .catch((e)=> {
         alert(`에러 : ${e}`);

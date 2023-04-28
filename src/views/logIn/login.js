@@ -1,15 +1,15 @@
 const submitBtn = document.getElementById("submit-btn");
-const userId = document.getElementById("user-id");
-const userPw = document.getElementById("user-pw");
+const userIdInput = document.getElementById("user-id");
+const userPwInput = document.getElementById("user-pw");
 const idError = document.getElementById("id-error");
 const pwError = document.getElementById("pw-error");
 
 submitBtn.onclick = () => {
     const data = {
-        userId: userId.value,
-        password: userPw.value,
+        userId: userIdInput.value,
+        password: userPwInput.value,
     };
-    fetch("http://localhost:4000/login", {
+    fetch("/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -23,15 +23,18 @@ submitBtn.onclick = () => {
             const token = data.token;
             localStorage.setItem("token", JSON.stringify(token));
             console.log(token);
-            fetch(`http://localhost:4000/mypage/${userId.value}`, {
+            console.log(data);
+            fetch(`/user/mypage/${userIdInput.value}`, {
                 method: "GET",
                 headers: {
                 "Authorization": `Bearer ${token}`
                 }
             })
-            .then((res) => res.json())
+            .then((res) => res.json())       
             //회원 로그인 페이지 || 관리자 페이지 이동
             .then((mypageData) => {
+                const userId = mypageData.userId;
+                localStorage.setItem("userId", JSON.stringify(userId));
                 if (mypageData.isAdmin) {
                     window.location.href = "/admin/index.html";
                 } else {

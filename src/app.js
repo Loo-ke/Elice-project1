@@ -24,10 +24,7 @@ const __dirname = path.dirname(__filename); // 현재 파일이 위치한 디렉
 
 const app = express();
 
-app.use(cors({
-  origin: 'http://127.0.0.1:5500',
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
@@ -49,17 +46,16 @@ db.once("open", function () {
   console.log("MongoDB connected!");
 });
 
-
 // HTML, CSS, JS 라우팅
 // app.use("/", viewsRouter);
 
 // API 라우팅
-app.use(userRouter);
-app.use(authRouter);
-app.use(productRouter);
-app.use(categoryRouter);
-app.use(nationRouter);
-app.use(orderRouter);
+app.use("/user",userRouter);
+app.use("/auth",authRouter);
+app.use("/product",productRouter);
+app.use("/category",categoryRouter);
+app.use("/nation",nationRouter);
+app.use("/order",orderRouter);
 
 // 에러 핸들러
 app.use(errorHandler);

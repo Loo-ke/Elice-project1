@@ -200,7 +200,7 @@ function fetchProductData() {
     data.forEach(product => {
       const newRow = `
         <tr>
-          <td>${product.createdAt}</td>
+          <td>${new Date(product.createdAt).toLocaleDateString()}</td>
           <td>${product.product}</td>
           <td>${product.nation}</td>
           <td>${product.category}</td>

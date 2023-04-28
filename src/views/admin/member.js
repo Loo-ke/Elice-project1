@@ -1,6 +1,6 @@
 // API 데이터 받아오기
 function getMembers() {
-  fetch("http://localhost:4000/admin/members", {
+  fetch("/user/admin/members", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ function renderMembers(members) {
 // 권한 수정
 function patchMember(userId, isAdmin) {
   const token = JSON.parse(localStorage.getItem("token"));
-  fetch(`http://localhost:4000/admin/members/${userId}`, {
+  fetch(`/user/admin/members/${userId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

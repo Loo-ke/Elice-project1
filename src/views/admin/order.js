@@ -1,6 +1,6 @@
 // 주문 상태 조회 API를 호출하여 데이터 가져오기
 function loadOrders() {
-    fetch('http://localhost:4000/admin/orders', {
+    fetch('/order/admin/orders', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -125,7 +125,7 @@ window.addEventListener('load', () => {
             const orderId = event.target.getAttribute('order-id');
             const status = event.target.value;
 
-            fetch(`http://localhost:4000/admin/orders/${orderId}`, {
+            fetch(`/order/admin/orders/${orderId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

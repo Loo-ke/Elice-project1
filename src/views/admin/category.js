@@ -102,8 +102,6 @@ function openModifyCategoryModal(categoryId) {
 }
 */
 
-// 데이터를 받아올 URL
-const API_URL = 'http://localhost:4000';
 
 // API 요청을 보내는 함수
 const sendRequest = async (method, url, data = null) => {
@@ -111,7 +109,8 @@ const sendRequest = async (method, url, data = null) => {
 		const response = await fetch(url, {
 		method: method,
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` // 추가된 코드
 		},
 		body: JSON.stringify(data)
 		});
@@ -150,7 +149,7 @@ const sendRequest = async (method, url, data = null) => {
 
 // 카테고리 조회 함수
 const getCategoryList = async () => {
-	const response = await sendRequest('GET', `${API_URL}/admin/register/category/`);
+	const response = await sendRequest('GET', `/category/category`);
 	return response.data;
 };
 
@@ -159,7 +158,7 @@ const addCategory = async (categoryName, categoryImg) => {
 	const data = {
 		'new-category': categoryName,
 	};
-	await sendRequest('POST', `${API_URL}/admin/register/category/edit`, data);
+	await sendRequest('POST', `/category/category`, data);
 };
 
 // 카테고리 수정 함수
@@ -167,7 +166,8 @@ const modifyCategory = async (categoryId, categoryName) => {
 	const data = {
 		update: categoryName
 	};
-	await sendRequest('PATCH', `${API_URL}/admin/register/category/update?category-id=${categoryId}`, data);
+	await sendRequest('PATCH', `/category/category/${categoryId}`, data);
+	//await sendRequest('PATCH', `/category/update?category-id=${categoryId}`, data);
 };
 
 // 카테고리 삭제 함수
@@ -175,7 +175,8 @@ const deleteCategory = async (categoryId) => {
 	const data = {
 		delete: '삭제하기'
 	};
-	await sendRequest('DELETE', `${API_URL}/admin/register/category/delete?category-id=${categoryId}`, data);
+	await sendRequest('DELETE', `/category/category/${categoryId}`, data);
+	//await sendRequest('DELETE', `/category/delete?category-id=${categoryId}`, data);
 };
 
 // 카테고리 목록을 테이블에 출력하는 함수
@@ -199,7 +200,13 @@ const displayCategoryList = async () => {
 
 // 카테고리 데이터를 불러오는 API 요청 코드
 
-fetch('http://localhost:4000/admin/register/category')
+fetch('/category/category', {
+	method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` // 추가된 코드
+        }
+})
 	.then((response) => response.json())
 	.then((data) => {
 		getCategoryList = data;
