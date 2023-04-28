@@ -26,19 +26,20 @@ const ProductSchema = new Schema(
     },
     sellerId: {
       // 판매자 아이디
-      // type: Schema.Types.ObjectId,
-      type:String,
-      ref: "user",
+      type: Schema.Types.ObjectId,
+      // type:String,
+      ref: "users",
       required: true,
     },
     category: {
       // 카테고리
       // type: Schema.Types.ObjectId,
       type:String,
-      ref: "categorys",
+      ref: "categories",
       required: true,
     },
     nation:{
+      // type: Schema.Types.ObjectId,
       type:String,
       required:true,
       ref:"nations",
@@ -77,5 +78,9 @@ const ProductSchema = new Schema(
     timestamps: true,
   }
 );
+async function getProductById(id) {
+  const product = await Product.findById(id).populate("sellerId");
+  return product;
+}
 
-export { ProductSchema };
+export { ProductSchema, getProductById };
