@@ -1,10 +1,18 @@
+import { request } from "express";
 import { model } from "mongoose";
 import { OrderSchema } from "../schemas/order-schema.js";
 
 const Order = model("Order", OrderSchema);
 
 export default class OrderModel {
+  async create(orderInfo){
+    const newOrder = new Order(orderInfo);
+    const order = await newOrder.save();
+    
+  return order;
 
+  }
+  
   async findAllByUserId(userId) {
     const orders = await Order.find({ userId });
     return orders;

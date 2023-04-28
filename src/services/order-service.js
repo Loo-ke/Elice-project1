@@ -2,6 +2,14 @@ import OrderModel from "../db/models/order-model.js";
 
 export const orderService = {
 //모든 주문 조회
+async createOrder(orderInfo) {
+  const orderModel = new OrderModel();
+  //const {userId:user, products, totalPrice, address, status} = orderInfo
+  
+  const createdOrder = await orderModel.create(orderInfo);
+  return createdOrder;
+},
+
   async getOrdersByUserId(userId) {
     const orderModel = new OrderModel();
     const orders = await orderModel.findAllByUserId(userId);

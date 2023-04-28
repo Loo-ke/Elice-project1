@@ -137,7 +137,7 @@ modalButtons.forEach((button) => {
 });
 
 
-
+/*
 // 국가 추가 모달창
 const modalButton = document.querySelector('#add-country-btn');
 const modal = document.querySelector('#addCountryModal');
@@ -156,7 +156,7 @@ modalButtons2.forEach((button) => {
     modal5.style.display = 'block';
 });
 });
-
+*/
 
 
 // 종류 추가 모달창

@@ -5,6 +5,7 @@ import { adminOnly, loginRequired } from "../middlewares/index.js";
 const orderRouter = Router();
 
 //사용자
+orderRouter.post("/orders", loginRequired, orderController.createOrder);
 orderRouter.get("/orders", loginRequired, orderController.getOrderAll);
 orderRouter.get("/orders/:orderId", loginRequired, orderController.getOrderOne);
 orderRouter.patch("/orders/:orderId", loginRequired, orderController.updateOrder);
