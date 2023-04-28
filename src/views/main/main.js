@@ -42,7 +42,7 @@ setInterval(function() {
     carouselImgs.animate({
         marginLeft: [from + "px", to + "px"]
     }, {
-        duration: 600,
+        duration: 400,
         easing: "ease",
         iterations: 1,
         fill: "both"
