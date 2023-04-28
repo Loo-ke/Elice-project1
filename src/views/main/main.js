@@ -8,7 +8,7 @@ const nations = document.querySelector("#nations");
 // 제품리스트 생성 함수
 const createItems = (item) => {
     return `<div class="item-grid">
-    <a href="/src/views/detail/detail.html?${item._id}" class="item-link">
+    <a href="/detail/detail.html?${item._id}" class="item-link">
         <img src="${item.imgUrl}" alt="" class="item-img">
         <div class="item-text">
             <div class="item-title">${item.product}</div>
@@ -100,7 +100,7 @@ carouselRight.onclick = () => {
 
 
 // 카테고리리스트 생성 fetch
-fetch("http://localhost:4000/category")
+fetch("/category/category")
     .then(res => res.json())
     .then(categorylist => {
         categorylist.forEach((category)=>{
@@ -124,7 +124,7 @@ fetch("http://localhost:4000/category")
 
 
 // 국가리스트 생성 fetch
-fetch("http://localhost:4000/nation")
+fetch("/nation/nation")
     .then(res => res.json())
     .then(nationlist => {
         nationlist.forEach((nation)=>{
@@ -182,7 +182,7 @@ for (let i = 0; i < categoryButton.length; i++) {
             unclickedMainNav.classList.replace("main-nav-clicked", "main-nav-unclicked")
             categoryMenu[i].classList.replace("main-nav-cetegory-clicked", "main-nav-cetegory-unclicked")
             items.innerHTML = ""
-            fetch("http://localhost:4000/product")
+            fetch("/product/product")
             .then(res => res.json())
             .then(productlist =>{ //첫 화면에 전체 값 보여주기
                 productlist.forEach((product)=>{
@@ -194,7 +194,7 @@ for (let i = 0; i < categoryButton.length; i++) {
 }
 
 // 제품 리스트 생성 fetch
-fetch("http://localhost:4000/product")
+fetch("/product/product")
     .then(res => res.json())
     .then(productlist =>{ //첫 화면에 전체 값 보여주기
         productlist.forEach((product)=>{

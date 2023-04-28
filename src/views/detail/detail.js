@@ -26,7 +26,7 @@ const productImg = document.querySelector(".product-img-container")
 const productAmount = document.querySelector(".product-amount")
 const buttonContainer = document.querySelector(".order-container")
 
-fetch(`http://localhost:4000/product/${itemid}`)
+fetch(`/product/product/${itemid}`)
   .then(res => res.json())
   .then((product)=>{
     productName.textContent = product.product;
@@ -39,12 +39,12 @@ fetch(`http://localhost:4000/product/${itemid}`)
     if (loggedInUser) {
       buttonContainer.innerHTML += `<div class="button-sub-container">
       <a class="button-cart"><p>장바구니</p></a>
-      <a href="/src/views/order" class="button-cart" class="login-purchase"><p>바로구매</p></a>
+      <a href="/order" class="button-cart" class="login-purchase"><p>바로구매</p></a>
     </div>`
     } else {
       buttonContainer.innerHTML += `<div class="button-sub-container">
       <a class="button-cart"><p>장바구니</p></a>
-      <a href="/src/views/login/login.html" class="button-purchase"><p>바로구매</p></a>
+      <a href="/login/login.html" class="button-purchase"><p>바로구매</p></a>
     </div>`
     const PurchaseBtn = document.querySelector(".button-purchase")
     PurchaseBtn.addEventListener("click", ()=>{return alert("로그인 후 이용가능합니다")});

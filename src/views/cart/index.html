@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="cart_style.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
-  <script defer src="cart_srcript.js"></script>
-  <title>Document</title>
+  <script defer src="cart_srcript.js" type="module"></script>
+  <title>WorldMarket</title>
 </head>
 <body>
 
   <!-- 공통 -->
-  <header><button class="btn">테스트버튼
-  </button></header>
+  <!-- <header><button class="btn">테스트버튼
+  </button></header> -->
 
   <main>
+    <main-cotainer class="main-cotainer">
     <header class="cart__header">
       <div class="cart__title">MY CART</div>
       <button class="btn__default all__del" id="all__delete"> All Delete</button>
@@ -85,8 +86,8 @@
             </div>
 
             <div class="cart__footer">
-              <button class="order__page__btn btn__default">결제페이지로</button>
               <button class="shopping__page__btn btn__default">메인페이지로</button>
+              <button class="order__page__btn btn__default">결제페이지로</button>
             </div>
 
           </div>
@@ -95,11 +96,12 @@
           
 
     </section>
+  </main-cotainer>
 
-
+    
+  
   </main>
   <!-- 공통 -->
   <footer></footer>
-  
 </body>
 </html>

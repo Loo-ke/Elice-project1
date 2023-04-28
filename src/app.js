@@ -31,7 +31,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
-app.use(express.static("src", "views"))
+
+app.use(express.static(path.resolve("src","views")))
+
 // MongoDB 연결
 
 mongoose.connect(process.env.MONGODB_URL, {

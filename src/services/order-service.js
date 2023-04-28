@@ -44,6 +44,9 @@ export const orderService = {
     const updatedOrder = await orderModel.updateOrderStatus(orderId, status);
     return updatedOrder;
     },
-  
+    async deleteOrderById(orderId) {
+      const orderModel = new OrderModel();
+      await orderModel.deleteById(orderId);
+    }
   
 }

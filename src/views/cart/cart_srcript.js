@@ -1,5 +1,5 @@
-// import { main } from "/public/js/main.js";
-// const {loggedInUser} = await main();
+import { main } from "/public/js/main.js";
+const {loggedInUser} = await main();
 
 // detail 페이지 데이터요청
 // const productInfo = {
@@ -14,24 +14,24 @@
 // window.localStorage.setItem(nextCartNum, productInfoJson)
 
 //여기부터
-		const btn = document.querySelector('.btn')
+		// const btn = document.querySelector('.btn')
 		
 
-		btn.addEventListener('click',function(){ 
-			let ramdomNum = Math.floor(Math.random()*50)
-			let productInfo ={
-				_id : ramdomNum, 
-				product: 'chill', 
-				price: 40000, 
-				amount: 2,
-				imgUrl: './image/art-4919768.gif',
-			}
-			const productInfoJson = JSON.stringify(productInfo);
-			const nextCartNum = `cart${productInfo._id}`
-				window.localStorage.setItem(nextCartNum, productInfoJson)
+		// btn.addEventListener('click',function(){ 
+		// 	let ramdomNum = Math.floor(Math.random()*50)
+		// 	let productInfo ={
+		// 		_id : ramdomNum, 
+		// 		product: 'chill', 
+		// 		price: 40000, 
+		// 		amount: 2,
+		// 		imgUrl: './image/art-4919768.gif',
+		// 	}
+		// 	const productInfoJson = JSON.stringify(productInfo);
+		// 	const nextCartNum = `cart${productInfo._id}`
+		// 		window.localStorage.setItem(nextCartNum, productInfoJson)
 
-			console.log('이게뭐지')
-		})
+		// 	console.log('이게뭐지')
+		// })
 //로컬데이터 생성 테스트
 //이까지는 지워요
 
@@ -169,3 +169,10 @@ if(dataCount > 0){//장바구니 상품이 있을 때
 		window.location.href = '../main/main.html'
 
 	})
+
+
+const footer = document.querySelector("footer")
+function resetfoot() {
+	footer.innerHTML= ""
+}
+resetfoot()

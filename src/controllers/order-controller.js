@@ -80,7 +80,7 @@ export default {
     try {
       const orderId = req.params.id;
       await orderService.deleteOrderById(orderId);
-      res.status(200).json({ success: true, message: 'Order deleted successfully' });
+      res.status(200).json({ success: true, message: '사용자 주문정보 삭제 완료' });
     } catch (error) {
       next(error);
     }

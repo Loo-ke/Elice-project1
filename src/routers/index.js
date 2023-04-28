@@ -4,3 +4,4 @@ export * from "./order-router.js";
 export * from "./product-router.js";
 export * from "./category-router.js";
 export * from "./nation-router.js";
+export * from "./views-router.js";

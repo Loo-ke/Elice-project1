@@ -17,6 +17,6 @@ orderRouter.patch("/admin/orders/:orderId", adminOnly, orderController.updateAdm
 orderRouter.delete("/admin/orders/:orderId", adminOnly, orderController.deleteAdminOrders);
 
 
-export { orderRouter };
+export {orderRouter}
 
 

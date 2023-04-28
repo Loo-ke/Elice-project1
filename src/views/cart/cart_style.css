@@ -1,8 +1,9 @@
 @import "/public/css/main.css";
 
-*{/* 폰트적용 */
+/* *{폰트적용
   font-family: 'Nanum Square', sans-serif;
-}
+} */
+
 a{
   text-decoration: none;
   color: #000;
@@ -12,6 +13,9 @@ a{
 }
 
 .btn__default{
+  margin: 0 10px;
+  font-size: 30px;
+  font-weight: 700;
   border-radius: 0;
   border: none;
   cursor: pointer;
@@ -21,28 +25,35 @@ a{
 html, body{
   margin: 0;
   width: 100%;
-  height: 100%;
+  
   box-sizing: border-box;
 }
 /* 상품이 없을때(empty)있을 때를 구분 */
 /* 공통 */
 
 main{
+  
+  height: 75%;
+  display: block;
+}
+
+.main-cotainer {
+  display: flex;
+  flex-direction: column;
   margin: 0 5%;
+  
 }
-footer{
-  height: 100%;
-  background-color: lightgrey;
-}
+
 .cart__header{
   margin: 35px 0 0 0;
-  height: 100%;
+  
   font-size: 30pt;
   text-align: center;
-  border-bottom: solid 2px #000;
+  border-bottom: solid 1px #999999;
 }
 .cart__title{
   margin-bottom: 30px;
+  font-weight: 700;
 }
 
 
@@ -54,20 +65,21 @@ footer{
   height: 200px;
   font-size: 25pt;
   padding-top: 70px;
+  font-weight: 700;
 }
 .cart__footer__empty{
   height: 100px;
-  border-top: solid 2px #000;
+  border-top: solid 1px #999999;
 }
 .empty__btn{
   color: #fff;
   font-weight: 200;
   background-color: #E94E33;
-  height: 25px;
+  
   width: 200px;
 
   margin-top: 20px;
-
+  
 }
 
 /* 상품이 존재할 때 */
@@ -77,7 +89,9 @@ footer{
   margin: 0 0 5px 0;
   text-align: left;
   padding-left: 0;
-  font-size: 11pt;
+  font-size: 25px;
+  font-weight: 700;
+  color: #E94E33;
 }
 .cart__detail{
   height: 100%;
@@ -103,19 +117,21 @@ footer{
   flex-direction: column;
 }
 .product__name__text{
-  font-size: 20pt;
+  font-size: 30px;
   margin-bottom: 60px;
+  font-weight: 700;
 }
 .sel__del{
   width: 50px;
   align-items: flex-start;
-  
+  font-size: 20px;
   margin-left: 0;
 }
 .list__info__block{
   width: 25%;
   margin-top: 5px;
-
+  font-size: 20px;
+  font-weight: 400;
 }
 .product__quan{
   margin-bottom: 30px;
@@ -123,16 +139,20 @@ footer{
 .quan__input{
   cursor: default;
   display: inline;
-  width: 30px;
+  width: 60px;
   text-align: center;
   border: none;
+  font-size: 30px;
+  font-weight: 700;
+  color: #E94E33;
+  margin: 0 5px;
 }
 .minusbtn , .plusbtn{
   font-size: 15pt;
 }
 
 .cart__order__list{
-  border-top: solid 2px #000;
+  border-top: solid 1px #999999;
   height: 150px;
   display: flex;
   flex-direction: row;
@@ -149,26 +169,44 @@ footer{
   display: flex;
   flex-direction: column;
   padding-top: 15px;
+  font-size: 20px;
+  margin-top: 15px;
+  font-weight: 400;
 }
 .order__price{
   margin-bottom: 10px;
 }
 .total__price__line{
-  margin: 8px 0;
-  border: solid 1px #000 ;
+  margin: 15px 0;
+  border: solid 1px #999999 ;
+
 }
 .total__price__text{
-  font-size: 20pt;
+  font-size: 25px;
   margin: 10px 0;
+  font-weight: 700;
 }
 .cart__footer{
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.order__page__btn, .shopping__page__btn{
+.order__page__btn{
+  font-weight: 400;
   margin: 5px 0;
-  font-size: 12pt;
+  font-size: 18px;
   background-color: #E94E33;
   color: #fff;
+  padding: 13px 0;
+}
+
+
+.shopping__page__btn{
+  font-weight: 700;
+  margin: 5px 0;
+  font-size: 18px;
+  background-color: white;
+  color: #E94E33;
+  padding: 13px 0;
+  border: #E94E33 2px solid;
 }

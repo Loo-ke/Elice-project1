@@ -32,5 +32,7 @@ export default class OrderModel {
     const updatedOrder = await Order.findByIdAndUpdate(orderId, { status }, { new: true });
     return updatedOrder;
     }
-  
+    async deleteById(orderId) {
+      await Order.findByIdAndDelete(orderId);
+    }
 }

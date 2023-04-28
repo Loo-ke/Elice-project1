@@ -15,5 +15,5 @@ userRouter.delete("/mypage/:userId", loginRequired, userController.deleteUser);
 userRouter.get("/admin/members", adminOnly, userController.getAdminUser);
 userRouter.patch("/admin/members/:userId", adminOnly, userController.updateAdminUser);
 
-export { userRouter };
+export {userRouter}
 
