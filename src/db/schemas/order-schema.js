@@ -2,7 +2,8 @@ import { Schema } from "mongoose";
 
 const OrderSchema = new Schema({
   userId: {
-    type: Schema.Types.ObjectId,
+    //type: Schema.Types.ObjectId,
+    type:String,
     ref: "users",
     required: true,
   },

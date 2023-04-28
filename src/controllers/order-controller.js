@@ -59,12 +59,6 @@ export default {
   },
   async getAdminAllOrders(req, res, next) {
     try {
-      // 관리자 권한을 가진 사용자만 주문 내역 전체를 조회할 수 있도록 제한
-      if (!req.isAdmin) {
-        res.status(403).json({ message: "관리자만 접근 가능합니다." });
-        return; 
-      }
-  
       // 모든 주문 내역을 조회하여 반환
       const orders = await orderService.getAdminAllOrders();
       res.status(200).json(orders);
@@ -74,11 +68,6 @@ export default {
   },
   async updateAdminAllOrders(req,res,next){
     try {
-      // 관리자 권한을 가진 사용자만 주문 내역 전체를 조회할 수 있도록 제한
-      if (!req.isAdmin) {
-        res.status(403).json({ message: "관리자만 접근 가능합니다." });
-        return; 
-      }
       const { orderId, status } = req.body;
 
 // 주문 내역 업데이트 (배송준비중, 배송중, 배송완료)
@@ -86,8 +75,28 @@ export default {
   res.status(200).json(updatedOrder);
   } catch (error) {
     next(error);
-    }}
+    }},
+  async deleteAdminOrders(req, res, next) {
+    try {
+      const orderId = req.params.id;
+      await orderService.deleteOrderById(orderId);
+      res.status(200).json({ success: true, message: 'Order deleted successfully' });
+    } catch (error) {
+      next(error);
+    }
+  },
 
+    adminOnly: [
+      '/admin/members',
+      '/admin/members/:userId'
+    ],
+    isAdmin(req, res, next) {
+      if (req.user && req.user.isAdmin) {
+        next();
+      } else {
+        res.status(403).send('Forbidden');
+      }
+    }
 }
   
 
