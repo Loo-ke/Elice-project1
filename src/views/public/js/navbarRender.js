@@ -19,8 +19,8 @@ function navbarRender(loggedInUser) {
                   <a href="/src/views/cart" class="navbar-text">장바구니</a>
               </li>
               <li class="navbar-content">
-                  <img src="/public/img/WMpepole.png" alt="mypage-icon" class="navbar-icon">
-                  <a href="/admin/admin.html" class="navbar-text">관리자페이지</a>
+                  <img src="/public/img/WMpeople.png" alt="mypage-icon" class="navbar-icon">
+                  <a href="/src/views/admin/admin.html" class="navbar-text">관리자페이지</a>
               </li>
           </ul>
       </nav>
