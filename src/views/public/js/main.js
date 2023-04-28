@@ -12,6 +12,14 @@ async function main() {
     navbarRender( loggedInUser );
     footerRander();
 
+    //로그아웃 기능
+    const logoutBtn = document.getElementById("logout");
+    logoutBtn.onclick = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        location.href = "/src/views/main/main.html";
+    }
 
     return { loggedInUser }; 
 }
