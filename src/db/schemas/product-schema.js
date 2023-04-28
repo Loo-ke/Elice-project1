@@ -33,14 +33,14 @@ const ProductSchema = new Schema(
     },
     category: {
       // 카테고리
-      // type: Schema.Types.ObjectId,
-      type:String,
+      type: Schema.Types.ObjectId,
+      // type:String,
       ref: "categories",
       required: true,
     },
     nation:{
-      // type: Schema.Types.ObjectId,
-      type:String,
+      type: Schema.Types.ObjectId,
+      // type:String,
       required:true,
       ref:"nations",
     },
