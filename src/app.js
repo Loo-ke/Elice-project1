@@ -52,12 +52,12 @@ db.once("open", function () {
 app.use("/", viewsRouter);
 
 // API 라우팅
-app.use("/user",userRouter);
-app.use("/auth",authRouter);
-app.use("/product",productRouter);
-app.use("/category",categoryRouter);
-app.use("/nation",nationRouter);
-app.use("/order",orderRouter);
+app.use(userRouter);
+app.use(authRouter);
+app.use(productRouter);
+app.use(categoryRouter);
+app.use(nationRouter);
+app.use(orderRouter);
 
 // 에러 핸들러
 app.use(errorHandler);

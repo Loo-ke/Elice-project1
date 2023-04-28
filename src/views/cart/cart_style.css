@@ -26,10 +26,7 @@ html, body{
 }
 /* 상품이 없을때(empty)있을 때를 구분 */
 /* 공통 */
-body> header{
-  height: 100px;
-  background-color: bisque;
-}
+
 main{
   margin: 0 5%;
 }
@@ -123,10 +120,16 @@ footer{
 .product__quan{
   margin-bottom: 30px;
 }
+.quan__input{
+  cursor: default;
+  display: inline;
+  width: 30px;
+  text-align: center;
+  border: none;
+}
 .minusbtn , .plusbtn{
   font-size: 15pt;
 }
-
 
 .cart__order__list{
   border-top: solid 2px #000;

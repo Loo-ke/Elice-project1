@@ -1,4 +1,5 @@
-const shoppingBtn = document.querySelector(".shopping__page__btn")
+// import { main } from "/public/js/main.js";
+// const {loggedInUser} = await main();
 
 // detail 페이지 데이터요청
 // const productInfo = {
@@ -14,17 +15,19 @@ const shoppingBtn = document.querySelector(".shopping__page__btn")
 
 //여기부터
 		const btn = document.querySelector('.btn')
-		let productInfo ={
-			_id : Math.floor(Math.random()*10), 
-			product: 'chill', 
-			price: 40000, 
-			amount: 2,
-			imgUrl: './image/art-4919768.gif',
-		}
+		
 
-		btn.addEventListener('click',()=>{ 
+		btn.addEventListener('click',function(){ 
+			let ramdomNum = Math.floor(Math.random()*50)
+			let productInfo ={
+				_id : ramdomNum, 
+				product: 'chill', 
+				price: 40000, 
+				amount: 2,
+				imgUrl: './image/art-4919768.gif',
+			}
 			const productInfoJson = JSON.stringify(productInfo);
-			const nextCartNum = `cart${localStorage.length+1}`
+			const nextCartNum = `cart${productInfo._id}`
 				window.localStorage.setItem(nextCartNum, productInfoJson)
 
 			console.log('이게뭐지')
@@ -45,7 +48,6 @@ const shoppingBtn = document.querySelector(".shopping__page__btn")
 					const data = JSON.parse(localStorage.getItem(key))
           nowcart.push(data)
          }
-				
 				}
       
 console.log(nowcart);
@@ -73,7 +75,7 @@ if(dataCount > 0){//장바구니 상품이 있을 때
 							<div class="product__quan">
 								<span>수량:</span>
 								<button class="btn__default" id="minus__btn__${_id}">-</button>
-								<input id="quan__num__${_id}"value = '${amount}'>
+								<input class = "quan__input "id="quan__num__${_id}"value = '${amount}' readonly/>
 								<button class="btn__default" id="plus__btn__${_id}">+</button>
 							</div>
 							<div class="product__price">
@@ -95,19 +97,29 @@ if(dataCount > 0){//장바구니 상품이 있을 때
 			plusBtn.addEventListener('click',()=>{
 				 amountNum.value = Number(amountNum.value)+1
 				 productPrice.innerHTML = (price * Number(amountNum.value))
+				 const key = `cart${_id}`
+   				const data = JSON.parse(localStorage.getItem(key))
+   				data.amount = amountNum.value
+   				localStorage.setItem(key, JSON.stringify(data))
+					 location.reload()
 
 			})
 			minusBtn.addEventListener('click',()=>{
 				if(Number(amountNum.value) > 1){
 					amountNum.value = Number(amountNum.value)-1
 					productPrice.innerHTML = (price * Number(amountNum.value))
+					const key = `cart${_id}`
+   				const data = JSON.parse(localStorage.getItem(key))
+   				data.amount = amountNum.value
+   				localStorage.setItem(key, JSON.stringify(data))
+					 location.reload()
 				} else if(Number(amountNum.value) <= 1){
 					alert("수량 최소값입니다.")
 				}
 			
 			})
 			deleteBtn.addEventListener('click', ()=>{
-				const key = localStorage.key(_id)
+				const key = localStorage.key(`cart${_id}`)
 				localStorage.removeItem(key)
 				productItem.remove()
 				location.reload()
@@ -118,16 +130,16 @@ if(dataCount > 0){//장바구니 상품이 있을 때
 
 			const orderPriceFunc= ()=>{
 					let orderPriceNum = 0;
-					nowcart.forEach(cartItme =>{
-						const{_id, price, amount} = cartItem
-						const productPriceNum = price*amount
+						nowcart.forEach((cartItem) =>{
+							const{ _id, price, amount} = cartItem
+						let productPriceNum = price*amount
 						orderPriceNum += productPriceNum
 					})
 					orderPrice.textContent = orderPriceNum
-					if(parseInt(orderPriceNum)>50000){
-						totalPrice.textContent =  orderPriceNum  
-				} else if(parseInt(orderPriceNum)<50000){
-					totalPrice.textContent =  parseInt(orderPriceNum)+2500
+					if(parseInt(orderPrice.textContent)>50000){
+						totalPrice.textContent =  orderPrice.textContent 
+				} else if(parseInt(orderPrice.textContent)<50000){
+					totalPrice.textContent =  parseInt(orderPrice.textContent)+2500
 				}
 			}
 				orderPriceFunc()
@@ -151,4 +163,9 @@ if(dataCount > 0){//장바구니 상품이 있을 때
 		}
 		
 	})
+	const shoppingBtn = document.querySelector(".shopping__page__btn")
 
+	shoppingBtn.addEventListener('click',()=>{
+		window.location.href = '../main/main.html'
+
+	})
