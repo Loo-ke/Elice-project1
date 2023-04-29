@@ -1,4 +1,4 @@
-import { main } from "/public/js/main.js";
+import { main, logout } from "/public/js/main.js";
 const {loggedInUser} = await main();
 
 // detail 페이지 데이터요청
@@ -176,3 +176,10 @@ function resetfoot() {
 	footer.innerHTML= ""
 }
 resetfoot()
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutButton = document.querySelector("#logout");
+  if (logoutButton) {
+      logout(logoutButton);
+  }
+});
