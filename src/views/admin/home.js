@@ -6,7 +6,7 @@ window.onload = function() {
 // 관리자 메인 페이지 데이터 로드 함수
 async function loadMainData() {
     try {
-    const response = await fetch('http://localhost:4000/admin/main');
+    const response = await fetch('/admin/main');
     const data = await response.json();
     applyMainData(data);
     } catch (error) {
@@ -21,28 +21,28 @@ async function loadMainData() {
         today_sales: '₩ 3,351,750',
         recent_status: [
             {
-            date: '2023-04-18',
+            date: '2023-04-28',
             user: '홍길동',
-            product: '사프란 1g',
-            price: '31,800원',
+            product: '베트남 스파이스',
+            price: '10,000원',
             status: 'completed'
             },
             {
-                date: '2023-04-18',
-                user: '홍길동',
-                product: '사프란 1g',
-                price: '31,800원',
+                date: '2023-04-28',
+                user: '조나단',
+                product: '스페인 솔트',
+                price: '15,000원',
                 status: 'cancel'
             },
             {
-                date: '2023-04-18',
-                user: '홍길동',
-                product: '사프란 1g',
-                price: '31,800원',
+                date: '2023-04-28',
+                user: '김미미',
+                product: '미국산 허브',
+                price: '15,000원',
                 status: 'pending'
             },
             {
-                date: '2023-04-18',
+                date: '2023-04-29',
                 user: '홍길동',
                 product: '사프란 1g',
                 price: '31,800원',

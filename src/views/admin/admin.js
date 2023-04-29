@@ -137,7 +137,7 @@ modalButtons.forEach((button) => {
 });
 
 
-
+/*
 // 국가 추가 모달창
 const modalButton = document.querySelector('#add-country-btn');
 const modal = document.querySelector('#addCountryModal');
@@ -156,7 +156,7 @@ modalButtons2.forEach((button) => {
     modal5.style.display = 'block';
 });
 });
-
+*/
 
 
 // 종류 추가 모달창
@@ -199,4 +199,16 @@ modals.forEach(modal => {
 	modal.querySelector('.modal-background').addEventListener('click', () => {
 		modal.style.display = 'none';
 	});
+});
+
+
+
+// 로그아웃 버튼 클릭 시 로그아웃 처리 및 메인 페이지로 이동
+const logoutBtn = document.querySelector('.logout');
+logoutBtn.addEventListener('click', () => {
+  // 로그아웃 처리
+localStorage.removeItem('token');
+
+  // 메인 페이지로 이동
+window.location.href = "/main/main.html";
 });

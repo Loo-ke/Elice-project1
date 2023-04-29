@@ -1,8 +1,12 @@
 // API 데이터 받아오기
 function getMembers() {
-  fetch("http://localhost:4000/admin/members"), {
-    credentials: "include"
-  }
+  fetch("/user/admin/members", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` // 추가된 코드
+    }
+  })
     .then((res) => {
       if (res.ok) {
         return res.json();
@@ -18,50 +22,51 @@ function getMembers() {
       // 에러 발생 시 임시 데이터를 화면에 렌더링
       const data = [
         {
-          registerdate: "2023-04-18",
+          createdAt: "2023-04-18",
           name: "이수영",
           userId: "example123",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
-          edit: "admin",
+          isAdmin: true,
         },
         {
-          registerdate: "2023-04-18",
+          createdAt: "2023-04-18",
           name: "엘리스",
           userId: "elice1234",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
-          edit: "general",
+          isAdmin: false,
         },
         {
-          registerdate: "2023-04-18",
+          createdAt: "2023-04-18",
           name: "홍길동",
           userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
-          edit: "general",
+          isAdmin: false,
         },
         {
-          registerdate: "2023-04-18",
+          createdAt: "2023-04-18",
           name: "홍길동",
           userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
-          edit: "general",
+          isAdmin: false,
         },
         {
-          registerdate: "2023-04-18",
+          createdAt: "2023-04-18",
           name: "홍길동",
           userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
-          edit: "general",
+          isAdmin: false,
         }
       ];
       renderMembers(data);
       console.error(error);
     });
 }
+
 
 // 회원 정보 렌더링
 function renderMembers(members) {
@@ -70,19 +75,19 @@ function renderMembers(members) {
   members.forEach((member) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${member.registerdate}</td>
+      <td>${new Date(member.createdAt).toLocaleDateString()}</td>
       <td><p>${member.name}</p></td>
       <td>${member.userId}</td>
       <td>${member.phone}</td>
-      <td>${member.address}</td>
+      <td>${member.address.postalCode} ${member.address.address1} ${member.address.address2}</td>
       <td>
         <div class="dropdown">
           <select class="status-account" data-userId="${member.userId}">
-            <option value="general" ${
-              member.edit === "general" ? "selected" : ""
+            <option value="false" ${
+              member.isAdmin === false ? "selected" : ""
             }>일반회원</option>
-            <option value="admin" ${
-              member.edit === "admin" ? "selected" : ""
+            <option value="true" ${
+              member.isAdmin === true ? "selected" : ""
             }>관리자</option>
           </select>
         </div>
@@ -96,20 +101,22 @@ function renderMembers(members) {
   selectEls.forEach((selectEl) => {
     selectEl.addEventListener("change", (event) => {
       const userId = event.target.dataset.userId;
-      const edit = event.target.value;
-      patchMember(userId, edit);
+      const isAdmin = event.target.value;
+      patchMember(userId, isAdmin);
     });
   });
 }
 
 // 권한 수정
-function patchMember(userId, edit) {
-  fetch("http://localhost:4000/admin/members/${userId}", {
+function patchMember(userId, isAdmin) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  fetch(`/user/admin/members/${userId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
-    body: JSON.stringify({ userId, edit }),
+    body: JSON.stringify({ userId, isAdmin }),
   })
     .then((res) => {
       if (!res.ok) {
@@ -123,3 +130,11 @@ function patchMember(userId, edit) {
 
 // 페이지 로드 시 회원 목록 불러오기
 getMembers();
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutButton = document.querySelector("#logout");
+  if (logoutButton) {
+      logout(logoutButton);
+  }
+});
