@@ -18,18 +18,18 @@ export const authService = {
       );
     }
 
-    const tokenPayload = { userId: user.id, isAdmin: user.isAdmin };
+    const tokenPayload = { userId: user.userId, isAdmin: user.isAdmin };
 
         
     const token = jwt.sign(tokenPayload, secretKey, { expiresIn: "1h" });
 
-    return { token, userId:user.id, isAdmin:user.isAdmin };
+    return { token, userId:user.userId, isAdmin:user.isAdmin };
   },
 
   async logout(token) {
     try {
       const decoded = jwt.verify(token, secretKey);
-      const userId = decoded.id;
+      const userId = decoded.userId;
     } catch (err) {
       throw new Error("유효하지 않은 토큰입니다.");
     }

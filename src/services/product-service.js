@@ -1,4 +1,5 @@
 import { productModel }  from "../db/models/product-model.js";
+import { categoryModel }  from "../db/models/category-model.js";
 
 class ProductService {
   async createProduct(productInfo) {
@@ -20,6 +21,15 @@ class ProductService {
       return productList;
     }
   }
+  async getProductsByCategoryTitle(categoryTitle) {
+    const category = await categoryModel.findByTitle(categoryTitle);
+    const products = await productModel.findAllByCategoryId(category);
+
+    return products;
+  }
+ 
+
+
 
   async updateProduct(productId, toUpdate) {
     const updatedProduct = await productModel.update(productId, toUpdate);

@@ -11,7 +11,19 @@ class ProductController {
       next(error);
     }
   };
-  
+  async getProductByCategory (req, res, next) {
+    let category = req.params.name;
+
+    try {
+      // 전체 제품 목록을 얻음
+      const products = await productService.getProductsByCategoryTitle(category);
+
+      res.status(200).json(products);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getProductList(req, res, next){
     try {
       const productArr = req.params.productId;

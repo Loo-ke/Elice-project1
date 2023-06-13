@@ -22,8 +22,8 @@ class CategoryService {
     return categoryList;
   }
 
-  async updateCategory(cid, categoryInfo) {
-    const updatedcategory = await categoryModel.update(cid, categoryInfo);
+  async updateCategory(categoryId, categoryInfo) {
+    const updatedcategory = await categoryModel.update(categoryId, categoryInfo);
     return updatedcategory;
   }
 

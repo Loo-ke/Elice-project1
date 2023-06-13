@@ -1,6 +1,6 @@
 // API 데이터 받아오기
 function getMembers() {
-  fetch("http://localhost:4000/user/admin/members")
+  fetch("http://localhost:4000/admin/members")
     .then((res) => {
       if (res.ok) {
         return res.json();
@@ -18,7 +18,7 @@ function getMembers() {
         {
           registerdate: "2023-04-18",
           name: "이수영",
-          email: "example@gmail.com",
+          userId: "example123",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
           edit: "admin",
@@ -26,7 +26,7 @@ function getMembers() {
         {
           registerdate: "2023-04-18",
           name: "엘리스",
-          email: "example@gmail.com",
+          userId: "elice1234",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
           edit: "general",
@@ -34,7 +34,7 @@ function getMembers() {
         {
           registerdate: "2023-04-18",
           name: "홍길동",
-          email: "example@gmail.com",
+          userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
           edit: "general",
@@ -42,7 +42,7 @@ function getMembers() {
         {
           registerdate: "2023-04-18",
           name: "홍길동",
-          email: "example@gmail.com",
+          userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
           edit: "general",
@@ -50,7 +50,7 @@ function getMembers() {
         {
           registerdate: "2023-04-18",
           name: "홍길동",
-          email: "example@gmail.com",
+          userId: "example",
           phone: "010-1234-5678",
           address: "서울특별시 성동구 아차산로17길 48 성수낙낙 2층",
           edit: "general",
@@ -70,12 +70,12 @@ function renderMembers(members) {
     row.innerHTML = `
       <td>${member.registerdate}</td>
       <td><p>${member.name}</p></td>
-      <td>${member.email}</td>
+      <td>${member.userId}</td>
       <td>${member.phone}</td>
       <td>${member.address}</td>
       <td>
         <div class="dropdown">
-          <select class="status-account" data-email="${member.email}">
+          <select class="status-account" data-userId="${member.userId}">
             <option value="general" ${
               member.edit === "general" ? "selected" : ""
             }>일반회원</option>
@@ -93,21 +93,21 @@ function renderMembers(members) {
   const selectEls = document.querySelectorAll(".status-account");
   selectEls.forEach((selectEl) => {
     selectEl.addEventListener("change", (event) => {
-      const email = event.target.dataset.email;
+      const userId = event.target.dataset.userId;
       const edit = event.target.value;
-      patchMember(email, edit);
+      patchMember(userId, edit);
     });
   });
 }
 
 // 권한 수정
-function patchMember(email, edit) {
-  fetch("http://localhost:4000/user/admin/members/:userId", {
+function patchMember(userId, edit) {
+  fetch("http://localhost:4000/admin/members/${userId}", {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, edit }),
+    body: JSON.stringify({ userId, edit }),
   })
     .then((res) => {
       if (!res.ok) {

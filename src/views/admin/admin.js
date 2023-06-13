@@ -10,11 +10,12 @@ function changeMain(page) {
 	document.getElementById(page).style.display = 'block';
 }
 
+/*
 window.addEventListener('DOMContentLoaded', function() {
 	// 홈 화면이 보이도록 설정
 	const homeTab = document.querySelector('#home-tab');
 	homeTab.click();
-});
+});*/
 
 
 // 사이드바 메뉴 클릭 이벤트 리스너

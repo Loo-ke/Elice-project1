@@ -4,16 +4,15 @@ window.onload = function() {
 }
 
 // 관리자 메인 페이지 데이터 로드 함수
-function loadMainData() {
-    // API 호출하여 데이터 받아오기
-    // axios.get('/admin/main')
-    //   .then(function(response) {
-    //     // 데이터 적용
-    //     applyMainData(response.data);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
+async function loadMainData() {
+    try {
+    const response = await fetch('http://localhost:4000/admin/main');
+    const data = await response.json();
+    applyMainData(data);
+    } catch (error) {
+    console.log(error);
+    }
+}
 
     // 임시 데이터
     const data = {
@@ -54,7 +53,7 @@ function loadMainData() {
 
     // 데이터 적용
     applyMainData(data);
-}
+
 
 // 관리자 메인 페이지 데이터 적용 함수
 function applyMainData(data) {

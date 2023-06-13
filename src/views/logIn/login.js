@@ -8,8 +8,8 @@ submitBtn.addEventListener("click", login);
 
 function login() {
     const req = {
-        id: userId.value,
-        pw: userPw.value,
+        userId: userId.value,
+        password: userPw.value,
     };
     fetch("http://localhost:4000/login", {
         method: "POST",

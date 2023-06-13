@@ -32,7 +32,7 @@ class CategoryContoller {
   }
 
   async getCategoryByName(req, res, next) {
-    const name = req.query.category;
+    const name = req.query.name;
 
     try {
       const Category = await categoryService.getCategoryByName(name);
@@ -44,7 +44,7 @@ class CategoryContoller {
 
   async updateCategory(req, res, next) {
     try {
-      const categoryId = req.params;
+      const categoryId = req.params.categoryId;
       const updateCategory = req.body;
       const updatedCategory = await categoryService.updateCategory(categoryId, updateCategory);
 

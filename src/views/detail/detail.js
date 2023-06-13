@@ -59,7 +59,7 @@ fetch(`http://localhost:4000/product/${itemid}`)
       // 카트 현상황 갯수 조회
       let nowcart = [];
       const productInfo = {
-        _id : itemid,
+        _id : itemid, //cart1234
         product : product.product,
         price : product.price,
         amount : productAmount.innerText,
@@ -74,7 +74,7 @@ fetch(`http://localhost:4000/product/${itemid}`)
          }
       }
       
-      const nextCartNum = `cart${nowcart.length+1}`
+      const nextCartNum = `cart${ _id}`// cart1234
       if (nowcart.length !== 0){
         window.localStorage.setItem(nextCartNum, productInfoJson)
       } else {

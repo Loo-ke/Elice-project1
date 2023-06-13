@@ -17,6 +17,12 @@ class CategoryModel {
     }
   }
 
+  async findByTitle(title) {
+    const category = await Category.findOne({ title });
+    return category;
+  }
+
+
   // async findByName(name) {
   //   try {
   //     const category = await Category.findOne({ name });
@@ -54,21 +60,13 @@ class CategoryModel {
     }
   }
 
-  async update(cid, categoryInfo) {
-    const filter = { _id: cid };
-    const option = { returnOriginal: false };
-    try {
-      const updatedCategory = await Category.findOneAndUpdate(
-        filter,
-        categoryInfo,
-        option
-      );
-      return updatedCategory;
-    } catch (err) {
-      const error = new Error("카테고리 수정에 실패하였습니다.");
-      error.statusCode = 400;
-      throw error;
-    }
+  async update(categoryId, categoryInfo) {
+    const filter = { _id: categoryId };
+    const option = { returnOriginal: true };
+  
+    const updatedCategory = await Category.findOneAndUpdate(filter, categoryInfo,option);
+    return updatedCategory;
+    
   }
 
   async delete(cid) {
